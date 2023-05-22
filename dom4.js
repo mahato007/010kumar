@@ -2,6 +2,11 @@ var form1 = document.getElementById("addform");
 
 var list = document.getElementById("kalyan");
 
+// filter
+var filter = document.getElementById("filter");
+// add event filter
+filter.addEventListener("keyup", filterItem);
+
 form1.addEventListener("submit", addItem);
 
 list.addEventListener("click", remove1);
@@ -35,4 +40,20 @@ function remove1(e) {
       list.removeChild(li);
     }
   }
+}
+
+function filterItem(e) {
+  var text = e.target.value.toLowerCase();
+
+  var itemlist = list.getElementsByTagName("li");
+
+  Array.from(itemlist).forEach(function (rudra) {
+    var itemName = rudra.firstChild.textContent;
+
+    if (itemName.toLowerCase().indexOf(text) != -1) {
+      rudra.style.display = "block";
+    } else {
+      rudra.style.display = "none";
+    }
+  });
 }
